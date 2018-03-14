@@ -1,4 +1,4 @@
-这篇快速上手指南会教你如何将TypeScript与[React](http://facebook.github.io/react/)结合起来使用。
+这篇快速上手指南会教你如何将TypeScript与[React](https://reactjs.org/)结合起来使用。
 在最后，你将学到：
 
 * 使用TypeScript和React创建工程
@@ -9,7 +9,7 @@
 我们会使用[create-react-app](https://github.com/facebookincubator/create-react-app)工具快速搭建工程环境。
 
 这里假设你已经在使用[Node.js](https://nodejs.org/)和[npm](https://www.npmjs.com/)。
-并且已经了解了[React的基础知识](https://facebook.github.io/react/docs/hello-world.html)。
+并且已经了解了[React的基础知识](https://reactjs.org/docs/hello-world.html)。
 
 # 安装create-react-app
 
@@ -146,7 +146,7 @@ function getExclamationMarks(numChars: number) {
 具体来讲，`Hello`是一个函数，接收一个`Props`对象并拆解它。
 如果`Props`对象里没有设置`enthusiasmLevel`，默认值为`1`。
 
-使用函数是React中定义组件的[两种方式](https://facebook.github.io/react/docs/components-and-props.html#functional-and-class-components)之一。
+使用函数是React中定义组件的[两种方式](https://reactjs.org/docs/components-and-props.html#functional-and-class-components)之一。
 如果你喜欢的话，也*可以*通过类的方式定义：
 
 ```ts
@@ -169,7 +169,7 @@ class Hello extends React.Component<Props, object> {
 }
 ```
 
-当我们的[组件具有某些状态](https://facebook.github.io/react/docs/state-and-lifecycle.html)的时候，使用类的方式是很有用处的。
+当我们的[组件具有某些状态](https://reactjs.org/docs/state-and-lifecycle.html)的时候，使用类的方式是很有用处的。
 但在这个例子里我们不需要考虑状态 - 事实上，在`React.Component<Props, object>`我们把状态指定为了`object`，因此使用SFC更简洁。
 当在创建可重用的通用UI组件的时候，在表现层使用组件局部状态比较适合。
 针对我们应用的生命周期，我们会审视应用是如何通过Redux轻松地管理普通状态的。
@@ -179,7 +179,7 @@ class Hello extends React.Component<Props, object> {
 首先我们在文件头部导入它：
 
 ```ts
-import Hello from './components/Hello.tsx';
+import Hello from './components/Hello';
 ```
 
 然后修改`render`调用：
@@ -235,6 +235,12 @@ import './Hello.css';
 
 # 使用Jest编写测试
 
+如果你没使用过Jest，你可能先要把它安装为开发依赖项。
+
+```sh
+npm install -D jest jest-cli jest-config
+```
+
 我们对`Hello`组件有一些假设。
 让我们在此重申一下：
 
@@ -252,15 +258,21 @@ Enzyme与此类似，但是是基于jsdom的，并且方便我们查询组件。
 让我们把它安装为开发依赖项。
 
 ```sh
-npm install -D enzyme @types/enzyme react-addons-test-utils
+npm install -D enzyme @types/enzyme enzyme-adapter-react-16 @types/enzyme-adapter-react-16
+```
+
+如果你的react版本低于15.5.0，还需安装如下
+
+```sh
+npm install -D react-addons-test-utils
 ```
 
 注意我们同时安装了`enzyme`和`@types/enzyme`。
 `enzyme`包指的是包含了实际运行的JavaScript代码包，而`@types/enzyme`则包含了声明文件（`.d.ts`文件）的包，以便TypeScript能够了解该如何使用Enzyme。
 你可以在[这里](https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html)了解更多关于`@types`包的信息。
 
-我们还需要安装`react-addons-test-utils`。
-它是使用`enzyme`所需要安装的包。
+我们还需要安装`enzyme-adapter`和`react-addons-test-utils`。
+它们是使用`enzyme`所需要安装的包，前者作为配置适配器是必须的，而后者若采用的React版本在15.5.0之上则毋需安装。
 
 现在我们已经设置好了Enzyme，下面开始编写测试！
 先创建一个文件`src/components/Hello.test.tsx`，与先前的`Hello.tsx`文件放在一起。
@@ -270,7 +282,10 @@ npm install -D enzyme @types/enzyme react-addons-test-utils
 
 import * as React from 'react';
 import * as enzyme from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
 import Hello from './Hello';
+
+enzyme.configure({ adapter: new Adapter() });
 
 it('renders the correct text when no enthusiasm level is given', () => {
   const hello = enzyme.shallow(<Hello name='Daniel' />);
@@ -449,7 +464,7 @@ export function enthusiasm(state: StoreState, action: EnthusiasmAction): StoreSt
 你可能想要对reducer写一些测试。
 因为reducers是纯函数，它们可以传入任意的数据。
 针对每个输入，可以测试reducers生成的新的状态。
-可以考虑使用Jest的[toEqual](https://facebook.github.io/jest/docs/expect.html#toequalvalue)方法。
+可以考虑使用Jest的[toEqual](https://facebook.github.io/jest/docs/en/expect.html#toequalvalue)方法。
 
 ## 创建容器
 

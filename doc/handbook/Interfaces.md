@@ -85,7 +85,7 @@ interface SquareConfig {
 
 function createSquare(config: SquareConfig): { color: string; area: number } {
   let newSquare = {color: "white", area: 100};
-  if (config.color) {
+  if (config.clor) {
     // Error: Property 'clor' does not exist on type 'SquareConfig'
     newSquare.color = config.clor;
   }
@@ -291,7 +291,7 @@ class Dog extends Animal {
     breed: string;
 }
 
-// 错误：使用'string'索引，有时会得到Animal!
+// 错误：使用数值型的字符串索引，有时会得到完全不同的Animal!
 interface NotOkay {
     [x: number]: Animal;
     [x: string]: Dog;
@@ -507,7 +507,7 @@ class Button extends Control implements SelectableControl {
 }
 
 class TextBox extends Control {
-
+    select() { }
 }
 
 // Error: Property 'state' is missing in type 'Image'.

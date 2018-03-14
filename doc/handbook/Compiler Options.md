@@ -3,7 +3,7 @@
 选项                                     | 类型      | 默认值                    | 描述
 ----------------------------------------|-----------|--------------------------|----------------------------------------------------------------------
 `--allowJs`                             | `boolean` |  `false`                 | 允许编译javascript文件。
-`--allowSyntheticDefaultImports`        | `boolean` | `module === "system"`    | 允许从没有设置默认导出的模块中默认导入。这并不影响代码的显示，仅为了类型检查。
+`--allowSyntheticDefaultImports`        | `boolean` | `module === "system"`或`--esModuleInterop`    | 允许从没有设置默认导出的模块中默认导入。这并不影响代码的显示，仅为了类型检查。
 `--allowUnreachableCode`                | `boolean` | `false`                  | 不报告执行不到的代码错误。
 `--allowUnusedLabels`                   | `boolean` | `false`                  | 不报告未使用的标签错误。
 `--alwaysStrict`                        | `boolean` | `false`                  | 以严格模式解析并为每个源文件生成`"use strict"`语句
@@ -38,6 +38,7 @@
 `--noEmit`                              | `boolean` | `false`                  | 不生成输出文件。
 `--noEmitHelpers`                       | `boolean` | `false`                  | 不在输出文件中生成用户自定义的帮助函数代码，如`__extends`。
 `--noEmitOnError`                       | `boolean` | `false`                  | 报错时不生成输出文件。
+`--noErrorTruncation`                   | `boolean` | `false`                  | 不截短错误消息。
 `--noFallthroughCasesInSwitch`          | `boolean` | `false`                  | 报告switch语句的fallthrough错误。（即，不允许switch的case语句贯穿）
 `--noImplicitAny`                       | `boolean` | `false`                  | 在表达式和声明上有隐含的`any`类型时报错。
 `--noImplicitReturns`                   | `boolean` | `false`                  | 不是函数的所有返回路径都有返回值时报错。

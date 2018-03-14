@@ -1,18 +1,18 @@
 > 这节假设你已经了解了模块的一些基本知识
 请阅读[模块](./Modules.md)文档了解更多信息。
 
-*模块解析*就是指编译器所要依据的一个流程，用它来找出某个导入操作所引用的具体值。
+*模块解析*是指编译器在查找导入模块内容时所遵循的流程。
 假设有一个导入语句`import { a } from "moduleA"`;
-为了去检查任何对`a`的使用，编译器需要准确的知道它表示什么，并且会需要检查它的定义`moduleA`。
+为了去检查任何对`a`的使用，编译器需要准确的知道它表示什么，并且需要检查它的定义`moduleA`。
 
-这时候，编译器会想知道“`moduleA`的shape是怎样的？”
-这听上去很简单，`moduleA`可能在你写的某个`.ts`/`.tsx`文件里或者在你的代码所依赖的`.d.ts`里。
+这时候，编译器会有个疑问“`moduleA`的结构是怎样的？”
+这听上去很简单，但`moduleA`可能在你写的某个`.ts`/`.tsx`文件里或者在你的代码所依赖的`.d.ts`里。
 
 首先，编译器会尝试定位表示导入模块的文件。
-编译会遵循下列二种策略之一：[Classic](#classic)或[Node](#node)。
+编译器会遵循以下二种策略之一：[Classic](#classic)或[Node](#node)。
 这些策略会告诉编译器到*哪里*去查找`moduleA`。
 
-如果它们失败了并且如果模块名是非相对的（且是在`"moduleA"`的情况下），编译器会尝试定位一个[外部模块声明](./Modules.md#ambient-modules)。
+如果上面的解析失败了并且模块名是非相对的（且是在`"moduleA"`的情况下），编译器会尝试定位一个[外部模块声明](./Modules.md#ambient-modules)。
 我们接下来会讲到非相对导入。
 
 最后，如果编译器还是不能解析这个模块，它会记录一个错误。
@@ -35,22 +35,22 @@
 * `import * as $ from "jQuery";`
 * `import { Component } from "@angular/core";`
 
-相对导入解析时是相对于导入它的文件来的，并且*不能*解析为一个外部模块声明。
+相对导入在解析时是相对于导入它的文件，并且*不能*解析为一个外部模块声明。
 你应该为你自己写的模块使用相对导入，这样能确保它们在运行时的相对位置。
 
 非相对模块的导入可以相对于`baseUrl`或通过下文会讲到的路径映射来进行解析。
-它们还可以被解析能[外部模块声明](./Modules.md#ambient-modules)。
+它们还可以被解析成[外部模块声明](./Modules.md#ambient-modules)。
 使用非相对路径来导入你的外部依赖。
 
 ## 模块解析策略
 
 共有两种可用的模块解析策略：[Node](#node)和[Classic](#classic)。
-你可以使用`--moduleResolution`标记指定使用哪种模块解析策略。
+你可以使用`--moduleResolution`标记来指定使用哪种模块解析策略。
 若未指定，那么在使用了`--module AMD | System | ES2015`时的默认值为[Classic](#classic)，其它情况时则为[Node](#node)。
 
 ### Classic
 
-这种策略以前是TypeScript默认的解析策略。
+这种策略在以前是TypeScript默认的解析策略。
 现在，它存在的理由主要是为了向后兼容。
 
 相对导入的模块是相对于导入它的文件进行解析的。
@@ -89,12 +89,12 @@ Node.js会根据`require`的是相对路径还是非相对路径做出不同的�
 例如，假设有一个文件路径为`/root/src/moduleA.js`，包含了一个导入`var x = require("./moduleB");`
 Node.js以下面的顺序解析这个导入：
 
-1. 将`/root/src/moduleB.js`视为文件，检查是否存在。
+1. 检查`/root/src/moduleB.js`文件是否存在。
 
-2. 将`/root/src/moduleB`视为目录，检查是否它包含`package.json`文件并且其指定了一个`"main"`模块。
+2. 检查`/root/src/moduleB`目录是否包含一个`package.json`文件，且`package.json`文件指定了一个`"main"`模块。
    在我们的例子里，如果Node.js发现文件`/root/src/moduleB/package.json`包含了`{ "main": "lib/mainModule.js" }`，那么Node.js会引用`/root/src/moduleB/lib/mainModule.js`。
 
-3. 将`/root/src/moduleB`视为目录，检查它是否包含`index.js`文件。
+3. 检查`/root/src/moduleB`目录是否包含一个`index.js`文件。
    这个文件会被隐式地当作那个文件夹下的"main"模块。
 
 你可以阅读Node.js文档了解更多详细信息：[file modules](https://nodejs.org/api/modules.html#modules_file_modules) 和 [folder modules](https://nodejs.org/api/modules.html#modules_folders_as_modules)。
