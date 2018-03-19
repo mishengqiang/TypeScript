@@ -636,7 +636,7 @@ export function someFunc() { /* ... */ }
 #### Consumer.ts
 
 ```ts
-import { SomeType, SomeFunc } from "./MyThings";
+import { SomeType, someFunc } from "./MyThings";
 let x = new SomeType();
 let y = someFunc();
 ```
