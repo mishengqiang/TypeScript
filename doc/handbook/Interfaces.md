@@ -278,7 +278,7 @@ let myStr: string = myArray[0];
 上面例子里，我们定义了`StringArray`接口，它具有索引签名。
 这个索引签名表示了当用`number`去索引`StringArray`时会得到`string`类型的返回值。
 
-共有支持两种索引签名：字符串和数字。
+Typescript支持两种索引签名：字符串和数字。
 可以同时使用两种类型的索引，但是数字索引的返回值必须是字符串索引返回值类型的子类型。
 这是因为当使用`number`来索引时，JavaScript会将它转换成`string`然后再去索引对象。
 也就是说用`100`（一个`number`）去索引等同于使用`"100"`（一个`string`）去索引，因此两者需要保持一致。
@@ -468,7 +468,7 @@ interface Counter {
 }
 
 function getCounter(): Counter {
-    let counter = <Counter>function (start: number) { };
+    let counter = <Counter>function (start: number): string { return '' };
     counter.interval = 123;
     counter.reset = function () { };
     return counter;
@@ -490,7 +490,7 @@ c.interval = 5.0;
 这意味着当你创建了一个接口继承了一个拥有私有或受保护的成员的类时，这个接口类型只能被这个类或其子类所实现（implement）。
 
 当你有一个庞大的继承结构时这很有用，但要指出的是你的代码只在子类拥有特定属性时起作用。
-这个子类除了继承至基类外与基类没有任何关系。
+除了继承自基类，子类之间不必相关联。
 例：
 
 ```ts

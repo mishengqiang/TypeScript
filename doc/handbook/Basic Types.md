@@ -135,7 +135,7 @@ let c: Color = Color.Green;
 enum Color {Red = 1, Green, Blue}
 let colorName: string = Color[2];
 
-alert(colorName);  // 显示'Green'因为上面代码里它的值是2
+console.log(colorName);  // 显示'Green'因为上面代码里它的值是2
 ```
 
 # 任意值
@@ -180,7 +180,7 @@ list[1] = 100;
 
 ```ts
 function warnUser(): void {
-    alert("This is my warning message");
+    console.log("This is my warning message");
 }
 ```
 
@@ -238,6 +238,24 @@ function infiniteLoop(): never {
     while (true) {
     }
 }
+```
+
+# Object
+
+`object`表示非原始类型，也就是除`number`，`string`，`boolean`，`symbol`，`null`或`undefined`之外的类型。
+
+使用`object`类型，就可以更好的表示像`Object.create`这样的API。例如：
+
+```ts
+declare function create(o: object | null): void;
+
+create({ prop: 0 }); // OK
+create(null); // OK
+
+create(42); // Error
+create("string"); // Error
+create(false); // Error
+create(undefined); // Error
 ```
 
 # 类型断言

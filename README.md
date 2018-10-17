@@ -2,24 +2,17 @@
 
 [![Build Status](https://travis-ci.org/zhongsp/TypeScript.svg?branch=master)](https://travis-ci.org/zhongsp/TypeScript) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-<img src="./misc/ts_logo.jpg" alt="TypeScript" width="24px" height="24px" style="vertical-align: bottom;">  [TypeScript 2.7 (January 31, 2018)](https://blogs.msdn.microsoft.com/typescript/2018/01/31/announcing-typescript-2-7/)
+<img src="./misc/ts_logo.jpg" alt="TypeScript" width="24px" height="24px" style="vertical-align: bottom;">  [TypeScript 3.1 RC (September 13, 2018)](https://blogs.msdn.microsoft.com/typescript/2018/09/13/announcing-typescript-3-1-rc/)
+|
+[版本发布说明](./doc/release-notes/TypeScript%203.1.md)
 
-* 更严格的类属性检查
-* 显式赋值断言
-* 更便利的与ECMAScript模块的互通性
-* `unique symbol`类型和常量名属性
-* `--watch`模式下具有更简洁的输出
-* 数字分隔符
-* 固定长度元组
-* `in`操作符细化和精确的`instanceof`
-* 更智能的对象字面量推断
-* [查看更多...](./doc/release-notes/TypeScript%202.7.md)
+:heavy_check_mark: TypeScript语言用于大规模应用的JavaScript开发。  :heavy_check_mark: TypeScript支持类型，是JavaScript的超集且可以编译成纯JavaScript代码。  :heavy_check_mark: TypeScript兼容所有浏览器，所有宿主环境，所有操作系统。  :heavy_check_mark: TypeScript是开源的。
 
-TypeScript是JavaScript的超集并且能够编译输出为纯粹的JavaScript.
-
-请阅读 :book: [TypeScript Handbook 中文版 - Published with GitBook](http://zhongsp.gitbooks.io/typescript-handbook/content/)
+:book: [在GitBook网站上阅读本手册](http://zhongsp.gitbooks.io/typescript-handbook/content/)  :arrow_down: [下载本手册 PDF 版](https://legacy.gitbook.com/download/pdf/book/zhongsp/typescript-handbook)  :arrow_down: [下载本手册 Mobi 版](https://legacy.gitbook.com/download/mobi/book/zhongsp/typescript-handbook)  :arrow_down: [下载本手册 ePub 版](https://legacy.gitbook.com/download/epub/book/zhongsp/typescript-handbook)
 
 :link: [一大波新的快速开始指南：React，Angular，Nodejs，ASP.NET Core，React Native，Vue，Glimmer，WeChat，Dojo2，Knockout等](./doc/quick-start/README.md)
+
+<img src="./misc/reward.jpg" alt="Reward the Author" width="300px" height="300px" style="vertical-align: bottom;">  如果觉得不错可以微信打赏哟 <3
 
 ## 目录
 
@@ -44,6 +37,7 @@ TypeScript是JavaScript的超集并且能够编译输出为纯粹的JavaScript.
   * [类型推论](./doc/handbook/Type%20Inference.md)
   * [类型兼容性](./doc/handbook/Type%20Compatibility.md)
   * [高级类型](./doc/handbook/Advanced%20Types.md)
+  * [实用工具类型](./doc/handbook/Utility%20Types.md)
   * [Symbols](./doc/handbook/Symbols.md)
   * [Iterators 和 Generators](./doc/handbook/Iterators%20and%20Generators.md)
   * [模块](./doc/handbook/Modules.md)
@@ -64,10 +58,12 @@ TypeScript是JavaScript的超集并且能够编译输出为纯粹的JavaScript.
   * [深入](./doc/handbook/declaration%20files/Deep%20Dive.md)
   * [发布](./doc/handbook/declaration%20files/Publishing.md)
   * [使用](./doc/handbook/declaration%20files/Consumption.md)
-* [工程配置](./doc/handbook/README.md)
+* [工程配置](./doc/handbook/tsconfig.json.md)
   * [tsconfig.json](./doc/handbook/tsconfig.json.md)
+  * [工程引用](./doc/handbook/Project%20References.md)
   * [NPM包的类型](./doc/handbook/Typings%20for%20NPM%20Packages.md)
   * [编译选项](./doc/handbook/Compiler%20Options.md)
+  * [配置 Watch](./doc/handbook/Configuring%20Watch.md)
   * [在MSBuild里使用编译选项](./doc/handbook/Compiler%20Options%20in%20MSBuild.md)
   * [与其它构建工具整合](./doc/handbook/Integrating%20with%20Build%20Tools.md)
   * [使用TypeScript的每日构建版本](./doc/handbook/Nightly%20Builds.md)
@@ -80,6 +76,10 @@ TypeScript是JavaScript的超集并且能够编译输出为纯粹的JavaScript.
   * [架构概述](./doc/wiki/Architectural-Overview.md)
   * [发展路线图](./doc/wiki/Roadmap.md)
 * [新增功能](./doc/release-notes/README.md)
+  * [TypeScript 3.1](./doc/release-notes/TypeScript%203.1.md)
+  * [TypeScript 3.0](./doc/release-notes/TypeScript%203.0.md)
+  * [TypeScript 2.9](./doc/release-notes/TypeScript%202.9.md)
+  * [TypeScript 2.8](./doc/release-notes/TypeScript%202.8.md)
   * [TypeScript 2.7](./doc/release-notes/TypeScript%202.7.md)
   * [TypeScript 2.6](./doc/release-notes/TypeScript%202.6.md)
   * [TypeScript 2.5](./doc/release-notes/TypeScript%202.5.md)
@@ -96,6 +96,7 @@ TypeScript是JavaScript的超集并且能够编译输出为纯粹的JavaScript.
   * [TypeScript 1.3](./doc/release-notes/TypeScript%201.3.md)
   * [TypeScript 1.1](./doc/release-notes/TypeScript%201.1.md)
 * [Breaking Changes](./doc/breaking-changes/breaking-changes.md)
+  * [TypeScript 2.4](./doc/breaking-changes/TypeScript%202.4.md)
   * [TypeScript 2.3](./doc/breaking-changes/TypeScript%202.3.md)
   * [TypeScript 2.2](./doc/breaking-changes/TypeScript%202.2.md)
   * [TypeScript 2.1](./doc/breaking-changes/TypeScript%202.1.md)
